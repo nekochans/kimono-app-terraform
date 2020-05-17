@@ -3,6 +3,6 @@ terraform {
     bucket  = "stg-kimono-app-tfstate"
     key     = "network/terraform.tfstate"
     region  = "ap-northeast-1"
-    profile = "nekochans-stg"
+    profile = "kimono-app-stg"
   }
 }

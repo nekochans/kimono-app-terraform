@@ -1,6 +1,6 @@
 locals {
-  name = "nekochans"
-  env  = "dev"
+  name = "kimono-app"
+  env  = "stg"
 
   azs = [
     "ap-northeast-1a",
