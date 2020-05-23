@@ -16,26 +16,8 @@ resource "aws_alb" "api_alb" {
   }
 }
 
-resource "aws_alb_target_group" "api_blue" {
-  name     = "${var.api_alb_name}-blue"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
-
-  health_check {
-    path                = "/"
-    timeout             = 5
-    healthy_threshold   = 5
-    unhealthy_threshold = 2
-    interval            = 20
-    matcher             = 200
-  }
-
-  target_type = "ip"
-}
-
-resource "aws_alb_target_group" "api_green" {
-  name     = "${var.api_alb_name}-green"
+resource "aws_alb_target_group" "api" {
+  name     = var.api_alb_name
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
@@ -66,7 +48,7 @@ resource "aws_alb_listener" "api" {
   }
 
   default_action {
-    target_group_arn = aws_alb_target_group.api_blue.id
+    target_group_arn = aws_alb_target_group.api.id
     type             = "forward"
   }
 }

@@ -32,7 +32,7 @@ resource "aws_ecs_service" "api_fargate_service" {
   launch_type     = "FARGATE"
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.api_blue.id
+    target_group_arn = aws_alb_target_group.api.id
     container_name   = "go"
     container_port   = 8888
   }
@@ -45,14 +45,9 @@ resource "aws_ecs_service" "api_fargate_service" {
     ]
   }
 
-  //  deployment_controller {
-  //    type = "CODE_DEPLOY"
-  //  }
-
   lifecycle {
     ignore_changes = [
       task_definition,
-      load_balancer,
       desired_count,
     ]
   }
