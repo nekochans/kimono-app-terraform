@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket  = "prod-nekochans-tfstate"
+    bucket  = "prod-kimono-app-tfstate"
     key     = "network/terraform.tfstate"
     region  = "ap-northeast-1"
-    profile = "nekochans-prod"
+    profile = "kimono-app-prod"
   }
 }

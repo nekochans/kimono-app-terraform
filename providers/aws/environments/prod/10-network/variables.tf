@@ -1,5 +1,5 @@
 locals {
-  name = "nekochans"
+  name = "kimono-app"
   env  = "prod"
 
   azs = [
