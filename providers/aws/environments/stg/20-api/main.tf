@@ -1,4 +1,4 @@
-module "vpc" {
+module "api" {
   source = "../../../../../modules/aws/api"
 
   subnet_public_ids                = local.subnet_public_ids
