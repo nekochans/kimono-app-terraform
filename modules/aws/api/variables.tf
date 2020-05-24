@@ -10,6 +10,14 @@ variable "subnet_private_ids" {
   type = list(string)
 }
 
+variable "sub_domain_name" {
+  type = string
+}
+
+variable "zone_id" {
+  type = string
+}
+
 variable "sg_alb_name" {
   type = string
 }
