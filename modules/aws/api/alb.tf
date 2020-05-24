@@ -36,11 +36,10 @@ resource "aws_alb_target_group" "api" {
 
 resource "aws_alb_listener" "api" {
   load_balancer_arn = aws_alb.api_alb.id
-  // TODO 一時的に80を設定
-  port     = 80
-  protocol = "HTTP"
+  port              = 443
+  protocol          = "HTTPS"
 
-  //  ssl_policy      = "ELBSecurityPolicy-2016-08"
+  ssl_policy      = "ELBSecurityPolicy-2016-08"
   certificate_arn = var.alb_certificate_arn
 
   lifecycle {
