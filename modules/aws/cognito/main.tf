@@ -35,3 +35,12 @@ resource "aws_cognito_user_pool" "pool" {
     }
   }
 }
+
+resource "aws_cognito_user_pool_client" "client" {
+  name                          = var.user_pool_name
+  user_pool_id                  = aws_cognito_user_pool.pool.id
+  generate_secret               = false
+  prevent_user_existence_errors = "ENABLED"
+  refresh_token_validity        = 30
+  explicit_auth_flows           = ["ALLOW_ADMIN_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
+}
