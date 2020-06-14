@@ -34,6 +34,11 @@ resource "aws_cognito_user_pool" "pool" {
       max_length = 2048
     }
   }
+
+  email_configuration {
+    source_arn            = var.ses_email_identity_arn
+    email_sending_account = "DEVELOPER"
+  }
 }
 
 resource "aws_cognito_user_pool_client" "client" {
