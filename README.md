@@ -1,4 +1,7 @@
 # kimono-app-terraform
+
+![ci-master](https://github.com/nekochans/kimono-app-terraform/workflows/ci-master/badge.svg)
+
 着物アプリのインフラをTerraformで構築するためのリポジトリ
 
 ## 事前準備
