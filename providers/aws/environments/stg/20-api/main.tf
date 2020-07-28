@@ -20,3 +20,11 @@ module "api" {
   cloudwatch_log_name              = local.cloudwatch_log_name
   cloudwatch_log_retention_in_days = local.cloudwatch_log_retention_in_days
 }
+
+module "apigateway" {
+  source = "../../../../../modules/aws/apigateway"
+
+  apigateway_name = local.apigateway_name
+  auto_deploy     = local.auto_deploy
+  integration_uri = local.integration_uri
+}
