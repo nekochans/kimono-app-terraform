@@ -22,3 +22,19 @@ resource "aws_apigatewayv2_integration" "apigateway" {
   integration_method = "ANY"
   integration_uri    = var.integration_uri
 }
+
+resource "aws_apigatewayv2_domain_name" "apigateway" {
+  domain_name = var.apigateway_domain_name
+
+  domain_name_configuration {
+    certificate_arn = var.certificate_arn
+    endpoint_type   = "REGIONAL"
+    security_policy = "TLS_1_2"
+  }
+}
+
+resource "aws_apigatewayv2_api_mapping" "apigateway" {
+  api_id      = aws_apigatewayv2_api.apigateway.id
+  stage       = aws_apigatewayv2_stage.apigateway.id
+  domain_name = aws_apigatewayv2_domain_name.apigateway.domain_name
+}

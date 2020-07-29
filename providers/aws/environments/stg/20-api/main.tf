@@ -24,7 +24,10 @@ module "api" {
 module "apigateway" {
   source = "../../../../../modules/aws/apigateway"
 
-  apigateway_name = local.apigateway_name
-  auto_deploy     = local.auto_deploy
-  integration_uri = local.integration_uri
+  apigateway_name        = local.apigateway_name
+  auto_deploy            = local.auto_deploy
+  integration_uri        = local.integration_uri
+  apigateway_domain_name = local.apigateway_domain_name
+  certificate_arn        = local.alb_certificate_arn
+  zone_id                = data.aws_route53_zone.api.zone_id
 }
