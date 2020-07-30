@@ -2,6 +2,10 @@ variable "apigateway_name" {
   type = string
 }
 
+variable "apigateway_stage" {
+  type = string
+}
+
 variable "auto_deploy" {
   type = bool
 }

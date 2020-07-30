@@ -29,6 +29,7 @@ locals {
   auto_deploy            = true
   integration_uri        = "https://${local.sub_domain_name}.${var.main_domain_name}"
   apigateway_domain_name = "stg-apigateway.${var.main_domain_name}"
+  apigateway_stage       = "$default"
 }
 
 variable "main_domain_name" {

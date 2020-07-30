@@ -25,6 +25,7 @@ module "apigateway" {
   source = "../../../../../modules/aws/apigateway"
 
   apigateway_name        = local.apigateway_name
+  apigateway_stage       = local.apigateway_stage
   auto_deploy            = local.auto_deploy
   integration_uri        = local.integration_uri
   apigateway_domain_name = local.apigateway_domain_name
