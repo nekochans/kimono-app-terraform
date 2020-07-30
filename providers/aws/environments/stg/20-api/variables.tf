@@ -24,6 +24,14 @@ locals {
   alb_certificate_arn = data.terraform_remote_state.acm.outputs.ap_northeast_1_acm_arn
 }
 
+locals {
+  apigateway_name        = "${local.env}-${local.name}-api"
+  auto_deploy            = true
+  integration_uri        = "https://${local.sub_domain_name}.${var.main_domain_name}"
+  apigateway_domain_name = "stg-apigateway.${var.main_domain_name}"
+  apigateway_stage       = "$default"
+}
+
 variable "main_domain_name" {
   type    = string
   default = ""
