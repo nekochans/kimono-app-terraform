@@ -25,14 +25,21 @@ locals {
 }
 
 locals {
-  apigateway_name        = "${local.env}-${local.name}-api"
-  auto_deploy            = true
-  integration_uri        = "https://${local.sub_domain_name}.${var.main_domain_name}"
-  apigateway_domain_name = "stg-apigateway.${var.main_domain_name}"
-  apigateway_stage       = "$default"
+  apigateway_name            = "${local.env}-${local.name}-api"
+  auto_deploy                = true
+  integration_uri            = "https://${local.sub_domain_name}.${var.main_domain_name}"
+  apigateway_domain_name     = "stg-apigateway.${var.main_domain_name}"
+  apigateway_stage           = "$default"
+  authorizer_audience        = [var.cognito_user_pool_client_id]
+  cognito_user_pool_endpoint = "https://${data.terraform_remote_state.cognito.outputs.cognito_user_pool_endpoint}"
 }
 
 variable "main_domain_name" {
+  type    = string
+  default = ""
+}
+
+variable "cognito_user_pool_client_id" {
   type    = string
   default = ""
 }

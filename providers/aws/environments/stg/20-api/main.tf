@@ -24,11 +24,13 @@ module "api" {
 module "apigateway" {
   source = "../../../../../modules/aws/apigateway"
 
-  apigateway_name        = local.apigateway_name
-  apigateway_stage       = local.apigateway_stage
-  auto_deploy            = local.auto_deploy
-  integration_uri        = local.integration_uri
-  apigateway_domain_name = local.apigateway_domain_name
-  certificate_arn        = local.alb_certificate_arn
-  zone_id                = data.aws_route53_zone.api.zone_id
+  apigateway_name            = local.apigateway_name
+  apigateway_stage           = local.apigateway_stage
+  authorizer_audience        = local.authorizer_audience
+  cognito_user_pool_endpoint = local.cognito_user_pool_endpoint
+  auto_deploy                = local.auto_deploy
+  integration_uri            = local.integration_uri
+  apigateway_domain_name     = local.apigateway_domain_name
+  certificate_arn            = local.alb_certificate_arn
+  zone_id                    = data.aws_route53_zone.api.zone_id
 }
