@@ -6,6 +6,14 @@ variable "apigateway_stage" {
   type = string
 }
 
+variable "authorizer_audience" {
+  type = list(string)
+}
+
+variable "cognito_user_pool_endpoint" {
+  type = string
+}
+
 variable "auto_deploy" {
   type = bool
 }

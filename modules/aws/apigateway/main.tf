@@ -10,17 +10,30 @@ resource "aws_apigatewayv2_stage" "apigateway" {
 }
 
 resource "aws_apigatewayv2_route" "apigateway" {
-  api_id    = aws_apigatewayv2_api.apigateway.id
-  route_key = "$default"
-  target    = "integrations/${aws_apigatewayv2_integration.apigateway.id}"
+  api_id             = aws_apigatewayv2_api.apigateway.id
+  route_key          = "$default"
+  target             = "integrations/${aws_apigatewayv2_integration.apigateway.id}"
+  authorization_type = "JWT"
+  authorizer_id      = aws_apigatewayv2_authorizer.apigateway.id
 }
-
 
 resource "aws_apigatewayv2_integration" "apigateway" {
   api_id             = aws_apigatewayv2_api.apigateway.id
   integration_type   = "HTTP_PROXY"
   integration_method = "ANY"
   integration_uri    = var.integration_uri
+}
+
+resource "aws_apigatewayv2_authorizer" "apigateway" {
+  api_id           = aws_apigatewayv2_api.apigateway.id
+  authorizer_type  = "JWT"
+  identity_sources = ["$request.header.Authorization"]
+  name             = "cognito"
+
+  jwt_configuration {
+    audience = var.authorizer_audience
+    issuer   = var.cognito_user_pool_endpoint
+  }
 }
 
 resource "aws_apigatewayv2_domain_name" "apigateway" {
