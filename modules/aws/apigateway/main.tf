@@ -7,6 +7,10 @@ resource "aws_apigatewayv2_stage" "apigateway" {
   api_id      = aws_apigatewayv2_api.apigateway.id
   name        = var.apigateway_stage
   auto_deploy = var.auto_deploy
+
+  lifecycle {
+    ignore_changes = [deployment_id]
+  }
 }
 
 resource "aws_apigatewayv2_route" "apigateway" {
@@ -25,6 +29,10 @@ resource "aws_apigatewayv2_integration" "vpclink" {
   integration_type   = "HTTP_PROXY"
   integration_method = "ANY"
   integration_uri    = var.internal_alb_listener_arn
+
+  lifecycle {
+    ignore_changes = [passthrough_behavior]
+  }
 }
 
 resource "aws_apigatewayv2_authorizer" "apigateway" {
