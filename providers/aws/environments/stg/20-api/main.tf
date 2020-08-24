@@ -8,6 +8,8 @@ module "api" {
   zone_id                          = data.aws_route53_zone.api.zone_id
   sg_alb_name                      = local.sg_alb_name
   api_alb_name                     = local.api_alb_name
+  sg_internal_alb_name             = local.sg_internal_alb_name
+  api_internal_alb_name            = local.api_internal_alb_name
   alblogs_enabled                  = local.alblogs_enabled
   alb_certificate_arn              = local.alb_certificate_arn
   ecs_cluster_name                 = local.ecs_cluster_name
@@ -24,6 +26,10 @@ module "api" {
 module "apigateway" {
   source = "../../../../../modules/aws/apigateway"
 
+  vpc_id                     = local.vpc_id
+  subnet_private_ids         = local.subnet_private_ids
+  vpc_link_name              = local.vpc_link_name
+  sg_vpc_link_name           = local.sg_vpc_link_name
   apigateway_name            = local.apigateway_name
   apigateway_stage           = local.apigateway_stage
   authorizer_audience        = local.authorizer_audience
@@ -33,4 +39,6 @@ module "apigateway" {
   apigateway_domain_name     = local.apigateway_domain_name
   certificate_arn            = local.alb_certificate_arn
   zone_id                    = data.aws_route53_zone.api.zone_id
+  sg_internal_alb_id         = module.api.sg_internal_alb_id
+  internal_alb_listener_arn  = module.api.internal_alb_listener_arn
 }

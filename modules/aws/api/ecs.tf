@@ -37,6 +37,12 @@ resource "aws_ecs_service" "api_fargate_service" {
     container_port   = 8888
   }
 
+  load_balancer {
+    target_group_arn = aws_alb_target_group.internal.id
+    container_name   = "go"
+    container_port   = 8888
+  }
+
   network_configuration {
     subnets = var.subnet_private_ids
 
