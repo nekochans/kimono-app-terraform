@@ -22,7 +22,15 @@ variable "sg_alb_name" {
   type = string
 }
 
+variable "sg_internal_alb_name" {
+  type = string
+}
+
 variable "api_alb_name" {
+  type = string
+}
+
+variable "api_internal_alb_name" {
   type = string
 }
 

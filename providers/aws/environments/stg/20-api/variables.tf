@@ -4,6 +4,8 @@ locals {
 
   api_alb_name                     = "${local.env}-${local.name}-api"
   sg_alb_name                      = "${local.env}-${local.name}-api-alb"
+  api_internal_alb_name            = "${local.env}-${local.name}-api-internal"
+  sg_internal_alb_name             = "${local.env}-${local.name}-api-internal-alb"
   alblogs_enabled                  = false
   sub_domain_name                  = "stg-api"
   ecs_cluster_name                 = "${local.env}-${local.name}"
@@ -25,6 +27,8 @@ locals {
 }
 
 locals {
+  vpc_link_name              = "${local.env}-${local.name}"
+  sg_vpc_link_name           = "${local.env}-${local.name}-vpc-link"
   apigateway_name            = "${local.env}-${local.name}-api"
   auto_deploy                = true
   integration_uri            = "https://${local.sub_domain_name}.${var.main_domain_name}"

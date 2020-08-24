@@ -51,3 +51,50 @@ resource "aws_alb_listener" "api" {
     type             = "forward"
   }
 }
+
+// internal ALB
+resource "aws_alb" "internal" {
+  name                       = var.api_internal_alb_name
+  internal                   = true
+  load_balancer_type         = "application"
+  security_groups            = [aws_security_group.internal_alb.id]
+  subnets                    = var.subnet_private_ids
+  enable_deletion_protection = false
+
+  tags = {
+    Name = var.api_internal_alb_name
+  }
+}
+
+resource "aws_alb_target_group" "internal" {
+  name     = var.api_internal_alb_name
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
+
+  health_check {
+    path                = "/"
+    timeout             = 5
+    healthy_threshold   = 5
+    unhealthy_threshold = 2
+    interval            = 20
+    matcher             = 200
+  }
+
+  target_type = "ip"
+}
+
+resource "aws_alb_listener" "internal" {
+  load_balancer_arn = aws_alb.internal.id
+  port              = 80
+  protocol          = "HTTP"
+
+  lifecycle {
+    ignore_changes = [default_action]
+  }
+
+  default_action {
+    target_group_arn = aws_alb_target_group.internal.id
+    type             = "forward"
+  }
+}
