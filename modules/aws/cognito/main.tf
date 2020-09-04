@@ -47,7 +47,7 @@ resource "aws_cognito_user_pool_client" "client" {
   generate_secret               = false
   prevent_user_existence_errors = "ENABLED"
   refresh_token_validity        = 30
-  explicit_auth_flows           = ["ALLOW_USER_PASSWORD_AUTH", "ALLOW_ADMIN_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
+  explicit_auth_flows           = ["ALLOW_USER_SRP_AUTH", "ALLOW_USER_PASSWORD_AUTH", "ALLOW_ADMIN_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
 
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_scopes                 = var.allowed_oauth_scopes
@@ -55,22 +55,6 @@ resource "aws_cognito_user_pool_client" "client" {
   supported_identity_providers         = ["COGNITO"]
   allowed_oauth_flows                  = ["code"]
 
-}
-
-resource "aws_cognito_resource_server" "resource" {
-  identifier = var.resource_server_identifier
-  name       = var.resource_server_name
-
-  scope {
-    scope_name        = "admin"
-    scope_description = "for administrator"
-  }
-  scope {
-    scope_name        = "normal"
-    scope_description = "for normal user"
-  }
-
-  user_pool_id = aws_cognito_user_pool.pool.id
 }
 
 resource "aws_cognito_user_pool_domain" "domain" {
