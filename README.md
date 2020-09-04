@@ -18,9 +18,9 @@ tfenvとDockerの利用を紹介します。どちらを利用してもいいで
 
 その後以下の手順で設定を行います。
 
-- `tfenv install 0.12.24`
-- `tfenv use 0.12.24`
-- `terraform --version` で Terraform v0.12.24 が表示されればOK
+- `tfenv install 0.13.02`
+- `tfenv use 0.13.02`
+- `terraform --version` で Terraform v0.13.02 が表示されればOK
 
 #### Docker
 
