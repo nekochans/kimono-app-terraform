@@ -6,6 +6,8 @@ resource "aws_cognito_user_pool" "pool" {
     allow_admin_create_user_only = false
   }
 
+  username_attributes = ["email", "phone_number"]
+
   password_policy {
     minimum_length                   = 8
     require_lowercase                = true
@@ -13,6 +15,12 @@ resource "aws_cognito_user_pool" "pool" {
     require_symbols                  = true
     require_uppercase                = true
     temporary_password_validity_days = 7
+  }
+
+  mfa_configuration = "OPTIONAL"
+
+  software_token_mfa_configuration {
+    enabled = true
   }
 
   verification_message_template {
@@ -48,13 +56,11 @@ resource "aws_cognito_user_pool_client" "client" {
   prevent_user_existence_errors = "ENABLED"
   refresh_token_validity        = 30
   explicit_auth_flows           = ["ALLOW_USER_SRP_AUTH", "ALLOW_USER_PASSWORD_AUTH", "ALLOW_ADMIN_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
-
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_scopes                 = var.allowed_oauth_scopes
   callback_urls                        = var.callback_urls
   supported_identity_providers         = ["COGNITO"]
   allowed_oauth_flows                  = ["code"]
-
 }
 
 resource "aws_cognito_user_pool_domain" "domain" {
