@@ -55,7 +55,7 @@ resource "aws_cognito_user_pool_client" "kimono_app_frontend" {
   generate_secret                      = false
   prevent_user_existence_errors        = "ENABLED"
   refresh_token_validity               = 30
-  explicit_auth_flows                  = ["ALLOW_USER_SRP_AUTH", "ALLOW_USER_PASSWORD_AUTH", "ALLOW_ADMIN_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
+  explicit_auth_flows                  = ["ALLOW_USER_SRP_AUTH", "ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_CUSTOM_AUTH"]
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_scopes                 = var.allowed_oauth_scopes
   callback_urls                        = var.callback_urls
