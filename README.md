@@ -10,6 +10,8 @@
 
 tfenvとDockerの利用を紹介します。どちらを利用してもいいです。
 
+Dockerのほうが環境によって差異が出ないのでオススメです。
+
 #### tfenv
 
 詳細は[tfenv](https://github.com/Zordrak/tfenv/blob/master/README.md)を確認してください。
@@ -18,9 +20,9 @@ tfenvとDockerの利用を紹介します。どちらを利用してもいいで
 
 その後以下の手順で設定を行います。
 
-- `tfenv install 0.13.02`
-- `tfenv use 0.13.02`
-- `terraform --version` で Terraform v0.13.02 が表示されればOK
+- `tfenv install 0.13.06`
+- `tfenv use 0.13.06`
+- `terraform --version` で Terraform v0.13.06 が表示されればOK
 
 #### Docker
 
