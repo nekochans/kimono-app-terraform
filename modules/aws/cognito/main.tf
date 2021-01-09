@@ -49,7 +49,7 @@ resource "aws_cognito_user_pool" "pool" {
   }
 }
 
-resource "aws_cognito_user_pool_client" "client" {
+resource "aws_cognito_user_pool_client" "kimono_app_frontend" {
   name                                 = var.user_pool_name
   user_pool_id                         = aws_cognito_user_pool.pool.id
   generate_secret                      = false

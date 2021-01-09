@@ -7,5 +7,5 @@ output "cognito_user_pool_arn" {
 }
 
 output "kimono_app_frontend_client_id" {
-  value = aws_cognito_user_pool_client.client.id
+  value = aws_cognito_user_pool_client.kimono_app_frontend.id
 }
