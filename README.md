@@ -104,6 +104,20 @@ terraform-boilerplate/
 
 今後このプロジェクトをベースに機能を追加する際も依存関係を意識してディレクトリ名を決める必要があります。
 
+### 環境変数
+
+数カ所 `terraform.tfvars` の設置が必要な箇所があります。（後に `terraform.tfvars` を自動生成する処理を追加します）
+
+設定が必要な変数は以下の通りです。
+
+```terraform
+// providers/aws/environments/○○/11-acm/terraform.tfvars
+main_domain_name = "Route53に設定されているドメイン名を指定"
+
+// providers/aws/environments/○○/13-ses/terraform.tfvars
+email_address = "送信元となるメールアドレスを指定、開発用途ならGmailのアドレス等で十分"
+```
+
 ## 設計方針
 
 - 今はAWSのみだが、他のproviderが増えても大丈夫なように `providers/` を作ってあります
