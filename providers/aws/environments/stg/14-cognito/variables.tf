@@ -7,5 +7,5 @@ locals {
   resource_server_name       = "${local.env}-${local.name}"
   resource_server_identifier = "${local.env}-${local.name}"
   allowed_oauth_scopes       = ["openid"]
-  callback_urls              = ["https://kimono-app.net"]
+  callback_urls              = ["https://stg.kimono-app.net"]
 }
