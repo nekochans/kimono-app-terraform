@@ -34,7 +34,7 @@ locals {
   integration_uri            = "https://${local.sub_domain_name}.${var.main_domain_name}"
   apigateway_domain_name     = "stg-apigateway.${var.main_domain_name}"
   apigateway_stage           = "$default"
-  authorizer_audience        = [var.cognito_user_pool_client_id]
+  authorizer_audience        = [data.terraform_remote_state.cognito.outputs.kimono_app_frontend_client_id]
   cognito_user_pool_endpoint = "https://${data.terraform_remote_state.cognito.outputs.cognito_user_pool_endpoint}"
 }
 
@@ -43,12 +43,6 @@ variable "main_domain_name" {
   default = ""
 }
 
-variable "cognito_user_pool_client_id" {
-  type    = string
-  default = ""
-}
-
 data "aws_route53_zone" "api" {
   name = var.main_domain_name
 }
-

@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        - TERRAFORM_VERSION=0.13.2
+        - TERRAFORM_VERSION=0.13.6
     tty: true
     volumes:
       - .:/data

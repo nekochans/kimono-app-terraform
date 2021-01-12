@@ -10,6 +10,8 @@
 
 tfenvとDockerの利用を紹介します。どちらを利用してもいいです。
 
+Dockerのほうが環境によって差異が出ないのでオススメです。
+
 #### tfenv
 
 詳細は[tfenv](https://github.com/Zordrak/tfenv/blob/master/README.md)を確認してください。
@@ -18,9 +20,9 @@ tfenvとDockerの利用を紹介します。どちらを利用してもいいで
 
 その後以下の手順で設定を行います。
 
-- `tfenv install 0.13.02`
-- `tfenv use 0.13.02`
-- `terraform --version` で Terraform v0.13.02 が表示されればOK
+- `tfenv install 0.13.06`
+- `tfenv use 0.13.06`
+- `terraform --version` で Terraform v0.13.06 が表示されればOK
 
 #### Docker
 
@@ -103,6 +105,21 @@ terraform-boilerplate/
 その為、必ず数字が小さいディレクトリから `terraform apply` を実行する必要があります。
 
 今後このプロジェクトをベースに機能を追加する際も依存関係を意識してディレクトリ名を決める必要があります。
+
+### 環境変数
+
+数カ所 `terraform.tfvars` の設置が必要な箇所があります。（後に `terraform.tfvars` を自動生成する処理を追加します）
+
+設定が必要な変数は以下の通りです。
+
+```terraform
+// providers/aws/environments/○○/11-acm/terraform.tfvars
+// providers/aws/environments/○○/20-api/terraform.tfvars
+main_domain_name = "Route53に設定されているドメイン名を指定"
+
+// providers/aws/environments/○○/13-ses/terraform.tfvars
+email_address = "送信元となるメールアドレスを指定、開発用途ならGmailのアドレス等で十分"
+```
 
 ## 設計方針
 
