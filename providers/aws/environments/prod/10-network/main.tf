@@ -1,6 +1,6 @@
 module "vpc" {
   source  = "nekochans/vpc/aws"
-  version = "1.0.1"
+  version = "3.0.0"
 
   name                     = local.name
   env                      = local.env
