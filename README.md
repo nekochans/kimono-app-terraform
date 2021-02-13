@@ -115,6 +115,7 @@ terraform-boilerplate/
 ```terraform
 // providers/aws/environments/○○/11-acm/terraform.tfvars
 // providers/aws/environments/○○/20-api/terraform.tfvars
+// providers/aws/environments/○○/21-frontend/terraform.tfvars
 main_domain_name = "Route53に設定されているドメイン名を指定"
 
 // providers/aws/environments/○○/13-ses/terraform.tfvars
